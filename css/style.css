@@ -1,0 +1,217 @@
+/*IMPORTA A FONTE POPPINS*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*RESET CSS*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins";
+}
+
+/*ATIVA ROLAGEM SUAVE*/
+html {
+    scroll-behavior: smooth;
+}
+
+/*COR DO FUNDO DA PÁGINA*/
+body {
+    background-color: rgb(107, 21, 169);
+}
+
+/*CONTAINER PRINCIPAL*/
+.wrapper {
+    max-width: 1080px;
+    margin: 50px auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+/*LINHA VERTICAL NO CENTRO DA TIMELINE*/
+.wrapper .linha-centro {
+    position: absolute;
+    height: 100%;
+    width: 4px;
+    background-color: black;
+
+    /* centraliza no meio da tela */
+    left: 50%;
+
+    /* ajusta para ficar bem no centro */
+    transform: translateX(-50%);
+
+    top: 20px;
+}
+
+/*DISPLAY DOS CARDS DE TEXTO*/
+.wrapper .caixa {
+
+    /* organiza itens lado a lado (esquerda/direita) */
+    display: flex;
+}
+
+/*CARD DA ESQUERDA*/
+.wrapper .caixa-1 {
+    justify-content: flex-start;
+}
+
+/*CARD DA DIREITA*/
+.wrapper .caixa-2 {
+    justify-content: flex-end;
+
+}
+
+/*ESTILO DOS CARDS DE TEXTO GERAL*/
+.wrapper .caixa section {
+    background-color: #fff;
+    border-radius: 5px;
+
+    /* metade da largura menos o espaço para afastamento da linha central */
+    width: calc(50% - 50px);
+    padding: 20px;
+    position: relative;
+}
+
+/*"SETINHA" QUE LIGA O CARD À LINHA CENTRAL*/
+.wrapper .caixa section::before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    background-color: #fff;
+    top: 28px;
+    z-index: -1;
+    transform: rotate(45deg);
+}
+
+/*SETA LADO ESQUERDO*/
+.caixa-1 section::before {
+    right: -7px;
+}
+
+/*SETA LADO DIREITO*/
+.caixa-2 section::before {
+    left: -7px;
+}
+
+/* ÍCONES REDONDOS DOS CARDS E O ÍCONE DE SCROLL NA LINHA CENTRAL */
+.caixa section .fa-solid,
+.linha-centro .icone-scroll {
+    position: absolute;
+    background-color: #fff;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+
+    /* centraliza verticalmente o ícone */
+    line-height: 40px;
+
+    border-radius: 50%;
+    color: rgb(107, 21, 169);
+    font-size: 17px;
+
+    /* sombra externa + efeito de relevo */
+    box-shadow: 0 0 0 4px #fff, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ÍCONE DE SCROLL NO FINAL DA LINHA CENTRAL */
+.linha-centro .icone-scroll {
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    /* maior que os ícones dos cards */
+    font-size: 25px;
+}
+
+/* ÍCONE DOS CARDS DA ESQUERDA */
+.caixa-1 section .fa-solid {
+    right: -70px;
+    top: 13px;
+}
+
+/* ÍCONE DOS CARDS DA DIREITA */
+.caixa-2 section .fa-solid {
+    top: 13px;
+    left: -70px;
+}
+
+/* CABEÇALHO E RODAPÉ DO CARD */
+.caixa section .bottom,
+.caixa section .detalhes {
+    display: flex;
+
+    /* separa itens para extremos (esquerda/direita) */
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+/* TÍTULO DO CARD */
+.caixa section .detalhes .titulo {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* PARÁGRAFO DO CARD */
+.caixa section .detalhes p {
+    margin: 10px 0 17px 0;
+}
+
+/* BOTÃO "LER MAIS" */
+.caixa section .bottom a {
+    text-decoration: none;
+    background-color: rgb(107, 21, 169);
+    color: #fff;
+    padding: 7px 15px;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+/*--------------------------------------------------*/
+
+/* RESPONSIVIDADE */
+
+/* Para telas até 772px (tablets/celulares grandes) */
+@media (max-width:772px) {
+    .wrapper .linha-centro {
+        /* linha central fica na esquerda */
+        left: 30px;
+    }
+
+    .wrapper .caixa {
+        /* afasta os cards da linha lateral */
+        margin: 30px 0 3px 60px;
+    }
+
+    .wrapper .caixa section {
+        /* cards passam a ocupar toda a largura */
+        width: 100%;
+    }
+
+    /*setinha e icones sempre do lado esquerdo*/
+    .caixa-1 section::before {
+        left: -7px;
+    }
+
+    .caixa-1 section .fa-solid {
+        left: -70px;
+    }
+}
+
+/* Para telas até 440px (celulares pequenos) */
+@media (max-width:440px) {
+
+    /* esconde a linha central, as setinhas e os ícones */
+    .wrapper .linha-centro,
+    .caixa section::before,
+    .caixa section .fa-solid {
+        display: none;
+    }
+
+    /* cards com menos margem (alinha no meio da tela)*/
+    .wrapper .caixa {
+        margin: 10px 0;
+    }
+}
